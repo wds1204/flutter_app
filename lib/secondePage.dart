@@ -20,6 +20,7 @@ class SecondeWidget extends State<SecondePage>{
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+
               RaisedButton(
                 onPressed: () {
 //                  Navigator.pop(context);
@@ -27,14 +28,16 @@ class SecondeWidget extends State<SecondePage>{
                     num++;
                   });
                 },
-                child: Text("back"),
+                child: Text("增加+"),
               ),
               SizedBox(
                 height: 40,
               ),
               MyCounterWidget("父组件的数据",num)
             ],
-          )),
+          ),
+      ),
+
     ));
   }
 

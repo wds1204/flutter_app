@@ -118,6 +118,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'ThirdPage.dart';
 import 'secondePage.dart';
 
 void main() {
@@ -144,6 +145,14 @@ class MyApp extends StatelessWidget {
           ),
           body: SecondePage(),
         );
+      },
+      '/third':(context){
+        return Scaffold(
+          appBar: AppBar(
+            title: Text("third Screen"),
+          ),
+          body: ThirdPage(),
+        );
       }
     });
   }
@@ -157,11 +166,11 @@ class HomeContent extends StatelessWidget {
         padding: const EdgeInsets.all(10.0),
         child: ListView(
           children: <Widget>[
-            ProductItem("Apple1", "Macbook Product1",
+            ProductItem(1,"Apple1", "Macbook Product1",
                 "https://tva1.sinaimg.cn/large/006y8mN6gy1g72j6nk1d4j30u00k0n0j.jpg"),
-            ProductItem("Apple2", "Macbook Product2",
+            ProductItem(2,"Apple2", "Macbook Product2",
                 "https://tva1.sinaimg.cn/large/006y8mN6gy1g72imm9u5zj30u00k0adf.jpg"),
-            ProductItem("Apple3", "Macbook Product3",
+            ProductItem(3,"Apple3", "Macbook Product3",
                 "https://tva1.sinaimg.cn/large/006y8mN6gy1g72imqlouhj30u00k00v0.jpg"),
           ],
         ));
@@ -172,6 +181,7 @@ class ProductItem extends StatelessWidget {
   final String title;
   final String desc;
   final String imgs;
+  final int index;
   BuildContext context;
 
  final style1= TextStyle(fontSize: 24);
@@ -179,10 +189,19 @@ class ProductItem extends StatelessWidget {
 
   void handleTap(BuildContext context) {
     print("handleTap");
-    Navigator.pushNamed(context, "/second");
+    switch(this.index){
+      case 1:
+        Navigator.pushNamed(context, "/second");
+        break;
+      case 2:
+        Navigator.pushNamed(context, "/third");
+        break;
+      case 3:
+        break;
+    }
   }
 
-  ProductItem(this.title, this.desc, this.imgs);
+  ProductItem(this.index,this.title, this.desc, this.imgs);
 
   @override
   Widget build(BuildContext context) {
