@@ -119,6 +119,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'ThirdPage.dart';
+import 'TranstionPage.dart';
 import 'secondePage.dart';
 
 void main() {
@@ -152,6 +153,14 @@ class MyApp extends StatelessWidget {
             title: Text("third Screen"),
           ),
           body: ThirdPage(),
+        );
+      },
+      '/transtion':(context){
+        return Scaffold(
+          appBar: AppBar(
+            title: Text("显示动画 Screen"),
+          ),
+          body: TranstionPage(),
         );
       }
     });
@@ -197,6 +206,7 @@ class ProductItem extends StatelessWidget {
         Navigator.pushNamed(context, "/third");
         break;
       case 3:
+        Navigator.pushNamed(context, "/transtion");
         break;
     }
   }
