@@ -28,7 +28,9 @@ class ThirdWidget extends State<ThirdContent> {
       return
       Column(
         mainAxisAlignment:MainAxisAlignment.spaceAround,
-        children: <Widget>[
+
+        children:
+        <Widget>[
           AnimatedContainer(
             curve:Curves.bounceOut,
             duration: Duration(milliseconds: 800),
@@ -53,7 +55,7 @@ class ThirdWidget extends State<ThirdContent> {
 
               duration: Duration(seconds: 1),
               child: Image.network("https://wx4.sinaimg.cn/mw690/69b47d90ly1gh1s68l6f5j20m80dv0u5.jpg",
-                width: 10,height: 100,
+                width: 100,height: 100,
                 key: UniqueKey(),
               ),
 //              child: Text("吴东生"),
