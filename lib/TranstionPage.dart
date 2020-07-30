@@ -25,7 +25,7 @@ class _TranstionPageState extends State<TranstionPage>
       vsync: this,
     )..repeat(reverse:true);
     _controller.addListener(() {
-      print("${_controller.value}");
+//      print("${_controller.value}");
     });
   }
 
