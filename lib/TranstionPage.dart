@@ -9,29 +9,31 @@ class TranstionPage extends StatefulWidget {
   }
 }
 
-class _TranstionPageState extends State<TranstionPage> with SingleTickerProviderStateMixin {
+class _TranstionPageState extends State<TranstionPage>
+    with SingleTickerProviderStateMixin {
   AnimationController _controller;
-  bool open=false;
+  bool open = false;
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    _controller=AnimationController(
-      duration: Duration(seconds: 1),
+    _controller = AnimationController(
+      duration: Duration(milliseconds: 1500),
 //      lowerBound: 0.5,
 //      upperBound:1.0,
-      vsync:this,
-    );
+      vsync: this,
+    )..repeat(reverse:true);
     _controller.addListener(() {
       print("${_controller.value}");
     });
   }
+
   @override
   void dispose() {
     _controller.reset();
     _controller.dispose();
     super.dispose();
-
   }
 
   @override
@@ -46,29 +48,53 @@ class _TranstionPageState extends State<TranstionPage> with SingleTickerProvider
 
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        ScaleTransition(
-          scale: _controller.drive(Tween(begin:0.5,end:1.0)),
+          children: <Widget>[
+            ScaleTransition(
+              scale: _controller.drive(Tween(begin: 0.5, end: 1.0)),
 //          turns: _controller.drive(Tween(begin: 0.5,end: 2.0)),//_controller,
-          child:  Container(
-            width: 200,
-            height: 200,
-            color: Colors.blue,
-          ),
-        ),
-        Padding(padding: EdgeInsets.all(30),),
-        RaisedButton(
-          child: Text('点击'),
-          onPressed: () {
-            //forward()运行一次、repeat()无限循环、reset()是重置回到原点、stop()暂停
+              child: Container(
+                width: 200,
+                height: 100,
+                color: Colors.blue,
+              ),
+            ),
+
+            SlideContain(_controller, Colors.blue[100], Interval(0,0.2)),
+            SlideContain(_controller, Colors.blue[300], Interval(0.2,0.4)),
+            SlideContain(_controller, Colors.blue[500], Interval(0.4,0.6)),
+            SlideContain(_controller, Colors.blue[700], Interval(0.6,0.8)),
+            SlideContain(_controller, Colors.blue[900], Interval(0.8,1.0)),
+            RaisedButton(
+              child: Text('点击'),
+              onPressed: () {
+                //forward()运行一次、repeat()无限循环、reset()是重置回到原点、stop()暂停
 //           !open? _controller.repeat():_controller.stop();
-          _controller.forward();
+                _controller.forward();
 //           open=!open;
 
-          },
-        ),
-      ],
-    ));
+              },
+            ),
+          ],
+        ));
   }
 }
+
+class SlideContain extends StatelessWidget {
+  final AnimationController controller;
+  final Color color;
+  final Interval interval;
+
+  SlideContain(this.controller, this.color, this.interval);
+
+  @override
+  Widget build(BuildContext context) {
+    return  SlideTransition(
+        position: Tween(begin: Offset.zero,end:Offset(0.15,0) ).
+            chain(CurveTween(curve:Curves.bounceOut)).
+        chain(CurveTween(curve: interval)).animate(controller),
+        child: Container(width: 300, height: 80, color: color)
+    );
+  }
+}
+
 
