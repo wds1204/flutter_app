@@ -18,8 +18,13 @@ class _TranstionPageState extends State<TranstionPage> with SingleTickerProvider
     super.initState();
     _controller=AnimationController(
       duration: Duration(seconds: 1),
+//      lowerBound: 0.5,
+//      upperBound:1.0,
       vsync:this,
     );
+    _controller.addListener(() {
+      print("${_controller.value}");
+    });
   }
   @override
   void dispose() {
@@ -42,8 +47,9 @@ class _TranstionPageState extends State<TranstionPage> with SingleTickerProvider
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        RotationTransition(
-          turns: _controller,
+        ScaleTransition(
+          scale: _controller.drive(Tween(begin:0.5,end:1.0)),
+//          turns: _controller.drive(Tween(begin: 0.5,end: 2.0)),//_controller,
           child:  Container(
             width: 200,
             height: 200,
@@ -54,9 +60,10 @@ class _TranstionPageState extends State<TranstionPage> with SingleTickerProvider
         RaisedButton(
           child: Text('点击'),
           onPressed: () {
-            //reset()是重置回到原点，stop()暂停
-           !open? _controller.repeat():_controller.stop();
-           open=!open;
+            //forward()运行一次、repeat()无限循环、reset()是重置回到原点、stop()暂停
+//           !open? _controller.repeat():_controller.stop();
+          _controller.forward();
+//           open=!open;
 
           },
         ),
@@ -64,3 +71,4 @@ class _TranstionPageState extends State<TranstionPage> with SingleTickerProvider
     ));
   }
 }
+
