@@ -118,6 +118,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterapp/snowmanPage.dart';
 import 'BreathePage.dart';
 import 'ThirdPage.dart';
 import 'TranstionPage.dart';
@@ -171,6 +172,14 @@ class MyApp extends StatelessWidget {
           ),
           body: BreathePage(),
         );
+      },
+      '/snowman':(context){
+        return Scaffold(
+          appBar: AppBar(
+            title: Text("雪人"),
+          ),
+          body: SnowmanPage(),
+        );
       }
     });
   }
@@ -189,7 +198,9 @@ class HomeContent extends StatelessWidget {
                 "https://tva1.sinaimg.cn/large/006y8mN6gy1g72imm9u5zj30u00k0adf.jpg"),
             ProductItem(3,"transtion使用", "Macbook Product3",
                 "https://tva1.sinaimg.cn/large/006y8mN6gy1g72imqlouhj30u00k00v0.jpg"),
-            ProductItem(4,"4-7-8呼吸法", "Macbook Product3",
+            ProductItem(4,"4-7-8呼吸法", "4-7-8呼吸法 Product3",
+                "https://tva1.sinaimg.cn/large/006y8mN6gy1g72imqlouhj30u00k00v0.jpg"),
+            ProductItem(5,"雪人", "雪人 Product3",
                 "https://tva1.sinaimg.cn/large/006y8mN6gy1g72imqlouhj30u00k00v0.jpg"),
           ],
         ));
@@ -220,6 +231,9 @@ class ProductItem extends StatelessWidget {
         break;
       case 4:
         Navigator.pushNamed(context, "/breathe");
+        break;
+      case 5:
+        Navigator.pushNamed(context, "/snowman");
         break;
     }
   }
