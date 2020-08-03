@@ -106,7 +106,6 @@ class _MyCounterState extends State<MyCounterWidget> {
     print("5、调用_MyCounterState的build方法");
     // TODO: implement build
     return Center(
-      
       child: Column(
         children: <Widget>[
           Row(
@@ -140,13 +139,12 @@ class _MyCounterState extends State<MyCounterWidget> {
 //          Text(this.widget.message,
 //            style: TextStyle(fontSize: 25, color: Colors.black38),),
           Container(
-            padding:EdgeInsets.all(20),
+            padding: EdgeInsets.all(20),
             alignment: Alignment.center,
             color: Colors.white,
             height: 140,
             child: TweenAnimationBuilder(
-              tween: Tween(
-                  end: counter.toDouble()),
+              tween: Tween(end: counter.toDouble()),
               duration: Duration(milliseconds: 1000),
               builder: (BuildContext contex, value, Widget child) {
                 int whole = 0;
@@ -155,11 +153,11 @@ class _MyCounterState extends State<MyCounterWidget> {
                 } else {
                   whole = value ~/ 1 - 1;
                 }
-                double  decimal=0.0;
-                if(value>=0){
-                  decimal=(value - whole);
-                }else{
-                   decimal =-(whole-value);
+                double decimal = 0.0;
+                if (value >= 0) {
+                  decimal = (value - whole);
+                } else {
+                  decimal = -(whole - value);
                 }
                 print("value${value}   whole${whole}    decimal${decimal}");
                 return Stack(
@@ -168,7 +166,7 @@ class _MyCounterState extends State<MyCounterWidget> {
                         top: (-100.0 * decimal), //0.0~-100.0
                         child: AnimatedOpacity(
                           duration: Duration(milliseconds: 300),
-                          opacity: (1-decimal*1),//1~0.0
+                          opacity: (1 - decimal * 1), //1~0.0
                           child: Text(
                             "${whole}",
                             style: TextStyle(fontSize: 100),
@@ -178,7 +176,7 @@ class _MyCounterState extends State<MyCounterWidget> {
                       top: (100 - decimal * 100), //100.0~0.0
                       child: AnimatedOpacity(
                         duration: Duration(milliseconds: 1000),
-                        opacity: decimal,//0~1.0
+                        opacity: decimal, //0~1.0
                         child: Text(
                           "${whole + 1}",
                           style: TextStyle(fontSize: 100),

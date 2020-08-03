@@ -30,12 +30,6 @@ class _BreathePageState extends State<BreathePage>
     super.dispose();
   }
 
-//.chain(Tween(begin: 0.5, end: 1.0))
-//            .chain(CurveTween(curve: Interval(0.2 + a, 0.2 + 2 * a)))
-//            .chain(Tween(begin: 1.0, end: 0.5)
-//                .chain(CurveTween(curve: Interval(0.2 + 2 * a, 0.2 + 3 * a))))
-//            .chain(Tween(begin: 0.5, end: 1.0)
-//                .chain(CurveTween(curve: Interval(0.2 + 3 * a, 0.2 + 4 * a))))
   @override
   Widget build(BuildContext context) {
     return Center(

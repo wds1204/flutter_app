@@ -243,7 +243,6 @@ class ProductItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     context = context;
-    // TODO: implement build
     return GestureDetector(
         onTap: () {
           handleTap(context);
@@ -265,7 +264,7 @@ class ProductItem extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 10,),
-              Image.network(imgs),
+              Image.network(imgs,key: Key(imgs),),
             ],
           ),
         ));
