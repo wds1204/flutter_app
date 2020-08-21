@@ -48,12 +48,12 @@ abstract class Widget extends DiagnosticableTree {
 }
 ```
 
-widget只是一个配置且无法修改，而Element才是真正被使用的对象，并可以修改。当新的Widget到来时将会调用canUpdate方法，来确定这个Element是否需要更新。
-返回true时可以更新对element索引，
-canUpdate 对两个（新老） Widget 的 runtimeType 和 key 进行比较，从而判断出当前的 Element 是否需要更新 
+我们知道widget只是一个配置且无法修改，而Element才是真正被使用的对象，并可以修改。当新的Widget到来时将会调用canUpdate方法，来确定这个Element是否需要更新。
+
+*canUpdate* 对两个（新老） Widget 的 runtimeType 和 key 进行比较，从而判断出当前的 Element 是否需要更新 
                       
 
-
+* StatelessContainer比较过程
 
 
 
