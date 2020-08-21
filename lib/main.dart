@@ -123,6 +123,7 @@ import 'BreathePage.dart';
 import 'ThirdPage.dart';
 import 'TranstionPage.dart';
 import 'secondePage.dart';
+import 'DragPage.dart';
 
 void main() {
   runApp(MyApp());
@@ -149,7 +150,7 @@ class MyApp extends StatelessWidget {
           body: SecondePage(),
         );
       },
-      '/third':(context){
+      '/third': (context) {
         return Scaffold(
           appBar: AppBar(
             title: Text("third Screen"),
@@ -157,7 +158,7 @@ class MyApp extends StatelessWidget {
           body: ThirdPage(),
         );
       },
-      '/transtion':(context){
+      '/transtion': (context) {
         return Scaffold(
           appBar: AppBar(
             title: Text("显示动画 Screen"),
@@ -165,20 +166,26 @@ class MyApp extends StatelessWidget {
           body: TranstionPage(),
         );
       },
-      '/breathe':(context){
+      '/breathe': (context) {
         return Scaffold(
-          appBar: AppBar(
-            title: Text("4-7-8呼吸法")
-          ),
+          appBar: AppBar(title: Text("4-7-8呼吸法")),
           body: BreathePage(),
         );
       },
-      '/snowman':(context){
+      '/snowman': (context) {
         return Scaffold(
           appBar: AppBar(
             title: Text("雪人"),
           ),
           body: SnowmanPage(),
+        );
+      },
+      '/drag': (context) {
+        return Scaffold(
+          appBar: AppBar(
+            title: Text("拖拽排序游戏"),
+          ),
+          body: DragPage(),
         );
       }
     });
@@ -192,15 +199,17 @@ class HomeContent extends StatelessWidget {
         padding: const EdgeInsets.all(10.0),
         child: ListView(
           children: <Widget>[
-            ProductItem(1,"数字反转计数器", "Macbook Product1",
+            ProductItem(1, "数字反转计数器", "Macbook Product1",
                 "https://tva1.sinaimg.cn/large/006y8mN6gy1g72j6nk1d4j30u00k0n0j.jpg"),
-            ProductItem(2,"animation练习", "Macbook Product2",
+            ProductItem(2, "animation练习", "Macbook Product2",
                 "https://tva1.sinaimg.cn/large/006y8mN6gy1g72imm9u5zj30u00k0adf.jpg"),
-            ProductItem(3,"transtion使用", "Macbook Product3",
+            ProductItem(3, "transtion使用", "Macbook Product3",
                 "https://tva1.sinaimg.cn/large/006y8mN6gy1g72imqlouhj30u00k00v0.jpg"),
-            ProductItem(4,"4-7-8呼吸法", "4-7-8呼吸法 Product3",
+            ProductItem(4, "4-7-8呼吸法", "4-7-8呼吸法 Product4",
                 "https://tva1.sinaimg.cn/large/006y8mN6gy1g72imqlouhj30u00k00v0.jpg"),
-            ProductItem(5,"雪人", "雪人 Product3",
+            ProductItem(5, "雪人", "雪人 Product5",
+                "https://tva1.sinaimg.cn/large/006y8mN6gy1g72imqlouhj30u00k00v0.jpg"),
+            ProductItem(6, "拖拽方块游戏", "拖拽 Product6",
                 "https://tva1.sinaimg.cn/large/006y8mN6gy1g72imqlouhj30u00k00v0.jpg"),
           ],
         ));
@@ -214,12 +223,12 @@ class ProductItem extends StatelessWidget {
   final int index;
   BuildContext context;
 
- final style1= TextStyle(fontSize: 24);
- final style2= TextStyle(fontSize: 18);
+  final style1 = TextStyle(fontSize: 24);
+  final style2 = TextStyle(fontSize: 18);
 
   void handleTap(BuildContext context) {
     print("handleTap");
-    switch(this.index){
+    switch (this.index) {
       case 1:
         Navigator.pushNamed(context, "/second");
         break;
@@ -235,10 +244,13 @@ class ProductItem extends StatelessWidget {
       case 5:
         Navigator.pushNamed(context, "/snowman");
         break;
+      case 6:
+        Navigator.pushNamed(context, "/drag");
+        break;
     }
   }
 
-  ProductItem(this.index,this.title, this.desc, this.imgs);
+  ProductItem(this.index, this.title, this.desc, this.imgs);
 
   @override
   Widget build(BuildContext context) {
@@ -253,18 +265,31 @@ class ProductItem extends StatelessWidget {
             children: <Widget>[
               Container(
                 width: MediaQuery.of(context).size.width,
-                decoration: new BoxDecoration(color: Colors.white,border:Border.all(color: Colors.black12,width: 2) ),
+                decoration: new BoxDecoration(
+                    color: Colors.white,
+                    border: Border.all(color: Colors.black12, width: 2)),
                 padding: EdgeInsets.all(5),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text(title, style: style1,),
-                    Text(desc, style: style2,),
+                    Text(
+                      title,
+                      style: style1,
+                    ),
+                    Text(
+                      desc,
+                      style: style2,
+                    ),
                   ],
                 ),
               ),
-              SizedBox(height: 10,),
-              Image.network(imgs,key: Key(imgs),),
+              SizedBox(
+                height: 10,
+              ),
+              Image.network(
+                imgs,
+                key: Key(imgs),
+              ),
             ],
           ),
         ));
