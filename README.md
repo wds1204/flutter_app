@@ -18,8 +18,8 @@ samples, guidance on mobile development, and a full API reference.
 
 ### 什么是Key
 
-######## 可以使用Key来控制框架将在widget重建时与哪些其他widget匹配。默认情况下，框架根据他们的runtimeType和它们的显示顺序来匹配。
-######## 使用Key时，框架要求两个widget具有相同的Key和runtimeType。
+####### 可以使用Key来控制框架将在widget重建时与哪些其他widget匹配。默认情况下，框架根据他们的runtimeType和它们的显示顺序来匹配。
+####### 使用Key时，框架要求两个widget具有相同的Key和runtimeType。
 
 Widget中的源码：
 
@@ -49,9 +49,9 @@ abstract class Widget extends DiagnosticableTree {
 ```
 
 
-####### widget只是一个配置且无法修改，而Element才是真正被使用的对象，并可以修改。当新的Widget到来时将会调用canUpdate方法，来确定这个Element是否需要更新。
-####### 返回true时可以更新对element索引，
-####### canUpdate 对两个（新老） Widget 的 runtimeType 和 key 进行比较，从而判断出当前的 Element 是否需要更新 
+###### widget只是一个配置且无法修改，而Element才是真正被使用的对象，并可以修改。当新的Widget到来时将会调用canUpdate方法，来确定这个Element是否需要更新。
+###### 返回true时可以更新对element索引，
+###### canUpdate 对两个（新老） Widget 的 runtimeType 和 key 进行比较，从而判断出当前的 Element 是否需要更新 
                       
 
 
