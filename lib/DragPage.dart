@@ -24,9 +24,7 @@ class _DragState extends State<DragPage> {
   _shuffle() {
     _color = Colors.primaries[Random().nextInt(Colors.primaries.length)];
     _colors = List.generate(9, (index) => _color[(index + 1) * 100]);
-    setState(() {
-      _colors.shuffle();
-    });
+    setState(() => _colors.shuffle());
   }
 
   final _globalKey = GlobalKey();
