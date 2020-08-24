@@ -77,6 +77,7 @@ class _ScreenState extends State<Screen> {
 ```
 复制代码这里在屏幕中心展示了两个 StatelessContainer 小部件，当我们点击 floatingActionButton 时，将会执行 switchWidget 并交换它们的顺序。
 
+![](https://user-gold-cdn.xitu.io/2019/4/2/169dc296b2953c80?imageslim)
 
 
 看上去并没有什么问题，交换操作被正确执行了。现在我们做一点小小的改动，将这个 StatelessContainer 升级为 StatefulContainer。
@@ -102,6 +103,8 @@ class _StatefulContainerState extends State<StatefulContainer> {
 ```
 复制代码在 StatefulContainer 中，我们将定义 Color 和 build 方法都放进了 State 中。
 现在我们还是使用刚才一样的布局，只不过把 StatelessContainer 替换成 StatefulContainer，看看会发生什么。
+
+![](https://user-gold-cdn.xitu.io/2019/4/2/169dc31037ced6ad?imageslim)
 
 这时，无论我们怎样点击，都再也没有办法交换这两个Container的顺序了，而 switchWidget 确实是被执行了的。
 为了解决这个问题，我们在两个 Widget 构造的时候给它传入一个 UniqueKey。
