@@ -154,7 +154,16 @@ abstract class Widget extends DiagnosticableTree {
                       
 
 * StatelessContainer比较过程
-
+    首先runtimeType一直，都是StatelessContainer比较过程且key为空，canUpdate返回true，此时原有element会用交换过位置的的StatelessWidget，
+    因为color是在StatelessWidget中，所以颜色发生变化，注意这里原有的element位置没有发生变化。
+    
+    
+* StatefulContainer比较过程 
+    runtimeType和Key都相同，canUpdate返回的都是true。对应element依然保留，之所以颜色没有交换，是因为这里只交换了StatefulContainer，原有的element只会从它持有的
+    state的build方法创建新的widget，因为element没有变，所有他持有的state也没有变，所以颜色不会变。
+    
+    当设置了Key以后，canUpstate返回false。此时RenderObjectElement会用新widget的key在老element列表里面查找，找到匹配的则会更新element的位置并更新对应renderObject的位置，
+    对于这个例子来讲就是交换了element的位置并交换了对应renderObject的位置。都交换了，那么颜色自然也就交换了。注意：这里原有element位置发生了变化。
 
 
 
