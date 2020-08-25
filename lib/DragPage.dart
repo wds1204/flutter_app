@@ -160,7 +160,7 @@ class Box extends StatelessWidget {
       @required this.left,
       @required this.onDrag,
       @required this.onEnd})
-      : super(key: ValueKey(colorDes.light));
+      : super(key: ValueKey(colorDes.key));
 
   @override
   Widget build(BuildContext context) {
@@ -172,7 +172,7 @@ class Box extends StatelessWidget {
     );
 
     return AnimatedPositioned(
-      key: ValueKey(colorDes.light),
+      key: ValueKey(colorDes.key),
       duration: Duration(milliseconds: 500),
       top: this.top,
       left: 0,
@@ -206,7 +206,7 @@ class Box extends StatelessWidget {
 class ColorDes{
 
   Color color;
-  int light;
+  int key;
 
-  ColorDes(this.color, this.light);
+  ColorDes(this.color, this.key);
 }
