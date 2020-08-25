@@ -17,13 +17,15 @@ class DragPage extends StatefulWidget {
 
 class _DragState extends State<DragPage> {
   var _color = Colors.blue;
-  List<Color> _colors = [];
+  List<ColorDes> _colors = [];
   int _slot;
   double offset;
 
   _shuffle() {
     _color = Colors.primaries[Random().nextInt(Colors.primaries.length)];
-    _colors = List.generate(9, (index) => _color[(index + 1) * 100]);
+    _colors = List.generate(9, (index) {
+      return  ColorDes(_color[(index+1)*100],(index+1)*100);
+    });
     setState(() => _colors.shuffle());
   }
 
@@ -59,7 +61,7 @@ class _DragState extends State<DragPage> {
 
 
   _checkColorCondition() {
-    List<double> lum = _colors.map((e) => e.computeLuminance()).toList();
+    List<double> lum = _colors.map((e) => e.color.computeLuminance()).toList();
     bool suc = true;
     for (int i = 0; i < lum.length - 1; i++) {
       if (lum[i] > lum[i + 1]) {
@@ -112,10 +114,10 @@ class _DragState extends State<DragPage> {
                       key: _globalKey,
                       children: List.generate(_colors.length, (index) {
                         return Box(
-                          color: _colors[index],
+                          colorDes: _colors[index],
                           top: index * Box.height,
                           left: 0,
-                          onDrag: (Color color) {
+                          onDrag: (ColorDes color) {
                             this._onDrag(color);
                           },
                           onEnd: _checkColorCondition,
@@ -144,21 +146,21 @@ class _DragState extends State<DragPage> {
 }
 
 class Box extends StatelessWidget {
-  final Color color;
+  final ColorDes colorDes;
   final double top, left;
-  final Function(Color color) onDrag;
+  final Function(ColorDes color) onDrag;
   final Function() onEnd;
   static const width = 200.0;
   static const height = 60.0;
   static const margin = 5.0;
 
   Box(
-      {@required this.color,
+      {@required this.colorDes,
       @required this.top,
       @required this.left,
       @required this.onDrag,
       @required this.onEnd})
-      : super(key: ValueKey(color.computeLuminance()));
+      : super(key: ValueKey(colorDes.light));
 
   @override
   Widget build(BuildContext context) {
@@ -166,11 +168,11 @@ class Box extends StatelessWidget {
       width: width - 2 * margin,
       height: height - 2 * margin,
       decoration:
-          BoxDecoration(color: color, borderRadius: BorderRadius.circular(5)),
+          BoxDecoration(color: colorDes.color, borderRadius: BorderRadius.circular(5)),
     );
 
     return AnimatedPositioned(
-      key: ValueKey(color.computeLuminance()),
+      key: ValueKey(colorDes.light),
       duration: Duration(milliseconds: 500),
       top: this.top,
       left: 0,
@@ -183,7 +185,7 @@ class Box extends StatelessWidget {
         ),
         onDragStarted: () {
           print("onDragStarted");
-          this.onDrag(color);
+          this.onDrag(colorDes);
         },
         onDragEnd: (detail) {
           print("onDragEnd");
@@ -199,4 +201,12 @@ class Box extends StatelessWidget {
       ),
     );
   }
+}
+
+class ColorDes{
+
+  Color color;
+  int light;
+
+  ColorDes(this.color, this.light);
 }
