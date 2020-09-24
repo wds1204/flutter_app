@@ -171,14 +171,12 @@ abstract class Widget extends DiagnosticableTree {
 
 
 
+[](https://upload-images.jianshu.io/upload_images/723261-7316939df3af1b6e.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200/format/webp)
 
+从创建到渲染的大体流程是：根据widget生成Element，然后创建相应RenderObject并关联到Element.renderObject属性上，
+最后再通过RenderObject来完成布局排列和绘制。Element就是Widget在UI树上具体位置的一个实例化对象，大多数Element只有唯一的renderObject，
+但还有一些Element会有多个子节点。如继承自RenderObjectElement的一些类，比如MultichildRenderObjectElement。
+最终所有Element的RenderObject构成一棵树，我们称之为Render Tree即渲染树。
 
-
-
-
-
-
-
-
-
-
+总结一下，我们可以认为Flutter的UI系统包含三棵树：Widget树、Element树、渲染树。他们的依赖关系是：Element根据Widget生成，而渲染树又依赖于Element
+树，最终的UI树其实是由一个个独立的Element节点构成。
